@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.royer.trainig.app.models.CardioMachine;
+import com.royer.trainig.app.models.CardioSet;
 import com.royer.trainig.app.models.RoutineExercise;
 import com.royer.trainig.app.models.TrainigExercise;
 import com.royer.trainig.app.models.TrainingSet;
 import com.royer.trainig.app.models.Users;
 import com.royer.trainig.app.models.WeightControl;
 import com.royer.trainig.app.repository.CardioMachineRepository;
+import com.royer.trainig.app.repository.CardioSetRepository;
 import com.royer.trainig.app.repository.RoutineExerciseRepository;
 import com.royer.trainig.app.repository.TrainigExerciseRepository;
 import com.royer.trainig.app.repository.TrainingSetRepository;
@@ -29,6 +31,7 @@ public class HomeController {
 	@Autowired TrainigExerciseRepository trainigExerciseRepository;
 	@Autowired TrainingSetRepository trainigSetRepository;
 	@Autowired CardioMachineRepository cardioMachineRepository;
+	@Autowired CardioSetRepository cardioSetRepository;
 	
 	@GetMapping("/")
 	public List<Users> home () {
@@ -79,4 +82,10 @@ public class HomeController {
 		
 	}
 	
+	@GetMapping("/cardio-set")
+	public List<CardioSet> cardioSet() {
+		List<CardioSet> cardioSetList = new ArrayList<CardioSet>();
+		cardioSetRepository.findAll().forEach(cardioSetList::add);
+		return cardioSetList;
+	}
 }

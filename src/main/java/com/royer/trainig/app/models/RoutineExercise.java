@@ -43,6 +43,10 @@ public class RoutineExercise {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "routineExerciseTrainingSet",  fetch = FetchType.LAZY)
 	private List<TrainingSet> trainingSet;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "routineExerciseCardioSet",  fetch = FetchType.LAZY)
+	private List<CardioSet> cardioSet;
 
 	
 	public RoutineExercise() {
@@ -50,7 +54,7 @@ public class RoutineExercise {
 	
 
 	public RoutineExercise(Integer id, Date dateRoutine, String observations, Integer timeBreak, Integer status,
-			Users userRoutineExercise, List<TrainingSet> trainingSet) {
+			Users userRoutineExercise, List<TrainingSet> trainingSet, List<CardioSet> cardioSet) {
 		this.id = id;
 		this.dateRoutine = dateRoutine;
 		this.observations = observations;
@@ -58,6 +62,7 @@ public class RoutineExercise {
 		this.status = status;
 		this.userRoutineExercise = userRoutineExercise;
 		this.trainingSet = trainingSet;
+		this.cardioSet = cardioSet;
 	}
 
 
@@ -115,6 +120,16 @@ public class RoutineExercise {
 
 	public void setTrainingSet(List<TrainingSet> trainingSet) {
 		this.trainingSet = trainingSet;
+	}
+
+
+	public List<CardioSet> getCardioSet() {
+		return cardioSet;
+	}
+
+
+	public void setCardioSet(List<CardioSet> cardioSet) {
+		this.cardioSet = cardioSet;
 	}
 	
 	
