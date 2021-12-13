@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.royer.trainig.app.models.RoutineExercise;
 import com.royer.trainig.app.models.TrainigExercise;
+import com.royer.trainig.app.models.TrainingSet;
 import com.royer.trainig.app.models.Users;
 import com.royer.trainig.app.models.WeightControl;
 import com.royer.trainig.app.repository.RoutineExerciseRepository;
 import com.royer.trainig.app.repository.TrainigExerciseRepository;
+import com.royer.trainig.app.repository.TrainingSetRepository;
 import com.royer.trainig.app.repository.UserRepository;
 import com.royer.trainig.app.repository.WeightControlRepository;
 
@@ -23,6 +25,7 @@ public class HomeController {
 	@Autowired WeightControlRepository weightControlRepository;
 	@Autowired RoutineExerciseRepository routineExerciseRepository;
 	@Autowired TrainigExerciseRepository trainigExerciseRepository;
+	@Autowired TrainingSetRepository trainigSetRepository;
 	
 	@GetMapping("/")
 	public List<Users> home () {
@@ -57,4 +60,12 @@ public class HomeController {
 		trainigExerciseRepository.findAll().forEach(trainigExerciseList::add);
 		return trainigExerciseList;
 	}
+	
+	@GetMapping("/training-set")
+	public List<TrainingSet> trainigSet() {
+		List<TrainingSet> trainigSetList = new ArrayList<TrainingSet>();
+		trainigSetRepository.findAll().forEach(trainigSetList::add);
+		return trainigSetList;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.royer.trainig.app.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "routine_exercise")
@@ -32,23 +35,31 @@ public class RoutineExercise {
 	@Column(name = "status")
 	private Integer status;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY) 
 	@JsonBackReference
 	@JoinColumn(name = "USER_ID", referencedColumnName = "ID")
 	private Users userRoutineExercise;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "routineExerciseTrainingSet",  fetch = FetchType.LAZY)
+	private List<TrainingSet> trainingSet;
+
+	
+	public RoutineExercise() {
+	}
+	
 
 	public RoutineExercise(Integer id, Date dateRoutine, String observations, Integer timeBreak, Integer status,
-			Users userRoutineExercise) {
+			Users userRoutineExercise, List<TrainingSet> trainingSet) {
 		this.id = id;
 		this.dateRoutine = dateRoutine;
 		this.observations = observations;
 		this.timeBreak = timeBreak;
 		this.status = status;
 		this.userRoutineExercise = userRoutineExercise;
+		this.trainingSet = trainingSet;
 	}
 
-	public RoutineExercise() {
-	}
 
 	public Integer getId() {
 		return id;
@@ -96,6 +107,14 @@ public class RoutineExercise {
 
 	public void setUserRoutineExercise(Users userRoutineExercise) {
 		this.userRoutineExercise = userRoutineExercise;
+	}
+
+	public List<TrainingSet> getTrainingSet() {
+		return trainingSet;
+	}
+
+	public void setTrainingSet(List<TrainingSet> trainingSet) {
+		this.trainingSet = trainingSet;
 	}
 	
 	
