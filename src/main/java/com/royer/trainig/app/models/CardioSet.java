@@ -26,7 +26,8 @@ public class CardioSet {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name = "routine_exercise_id", referencedColumnName = "ID")
-	private RoutineExercise routineExerciseCardioSet;
+	private RoutineExercise routineExerciseCardioSet; 
+	
 
 	public CardioSet() {
 	}

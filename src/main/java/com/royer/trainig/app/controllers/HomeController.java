@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.royer.trainig.app.models.CardioMachine;
 import com.royer.trainig.app.models.CardioSet;
+import com.royer.trainig.app.models.CardioWorkout;
 import com.royer.trainig.app.models.RoutineExercise;
 import com.royer.trainig.app.models.TrainigExercise;
 import com.royer.trainig.app.models.TrainingSet;
@@ -16,6 +17,7 @@ import com.royer.trainig.app.models.Users;
 import com.royer.trainig.app.models.WeightControl;
 import com.royer.trainig.app.repository.CardioMachineRepository;
 import com.royer.trainig.app.repository.CardioSetRepository;
+import com.royer.trainig.app.repository.CardioWorkoutRepository;
 import com.royer.trainig.app.repository.RoutineExerciseRepository;
 import com.royer.trainig.app.repository.TrainigExerciseRepository;
 import com.royer.trainig.app.repository.TrainingSetRepository;
@@ -32,14 +34,12 @@ public class HomeController {
 	@Autowired TrainingSetRepository trainigSetRepository;
 	@Autowired CardioMachineRepository cardioMachineRepository;
 	@Autowired CardioSetRepository cardioSetRepository;
+	@Autowired CardioWorkoutRepository cardioWorkoutRepository;
 	
 	@GetMapping("/")
 	public List<Users> home () {
 		List<Users> users = new ArrayList<Users>();
 		userRepository.findAll().forEach(users::add);
-//		for (Users user : users) {
-//			System.out.println(user);
-//		}
 		return users;
 	}
 	
@@ -47,9 +47,6 @@ public class HomeController {
 	public List<WeightControl> control() {
 		List<WeightControl> weightsControls = new ArrayList<WeightControl>();
 		weightControlRepository.findAll().forEach(weightsControls::add);
-//		for (WeightControl control : weightsControls) {
-//			System.out.println(control);
-//		}
 		return weightsControls;
 	}
 	
@@ -87,5 +84,12 @@ public class HomeController {
 		List<CardioSet> cardioSetList = new ArrayList<CardioSet>();
 		cardioSetRepository.findAll().forEach(cardioSetList::add);
 		return cardioSetList;
+	}
+	
+	@GetMapping("/cardio-workout")
+	public List<CardioWorkout> cardioWorkout() {
+		List<CardioWorkout> cardioWorkoutList = new ArrayList<CardioWorkout>();
+		cardioWorkoutRepository.findAll().forEach(cardioWorkoutList::add);
+		return cardioWorkoutList;
 	}
 }
