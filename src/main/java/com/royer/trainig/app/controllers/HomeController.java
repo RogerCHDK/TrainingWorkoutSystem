@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.royer.trainig.app.models.RoutineExercise;
+import com.royer.trainig.app.models.TrainigExercise;
 import com.royer.trainig.app.models.Users;
 import com.royer.trainig.app.models.WeightControl;
 import com.royer.trainig.app.repository.RoutineExerciseRepository;
+import com.royer.trainig.app.repository.TrainigExerciseRepository;
 import com.royer.trainig.app.repository.UserRepository;
 import com.royer.trainig.app.repository.WeightControlRepository;
 
@@ -20,6 +22,7 @@ public class HomeController {
 	@Autowired UserRepository userRepository;
 	@Autowired WeightControlRepository weightControlRepository;
 	@Autowired RoutineExerciseRepository routineExerciseRepository;
+	@Autowired TrainigExerciseRepository trainigExerciseRepository;
 	
 	@GetMapping("/")
 	public List<Users> home () {
@@ -46,5 +49,12 @@ public class HomeController {
 		List<RoutineExercise> routineExerciseList = new ArrayList<RoutineExercise>();
 		routineExerciseRepository.findAll().forEach(routineExerciseList::add);
 		return routineExerciseList;
+	}
+	
+	@GetMapping("/trainig-exercise")
+	public List<TrainigExercise> trainigExercise() {
+		List<TrainigExercise> trainigExerciseList = new ArrayList<TrainigExercise>();
+		trainigExerciseRepository.findAll().forEach(trainigExerciseList::add);
+		return trainigExerciseList;
 	}
 }
