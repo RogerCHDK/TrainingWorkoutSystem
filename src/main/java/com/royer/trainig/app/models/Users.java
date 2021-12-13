@@ -31,16 +31,22 @@ public class Users {
 	private String password;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user",  fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user",  fetch = FetchType.LAZY)
 	private List<WeightControl> weightControl;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "userRoutineExercise",  fetch = FetchType.LAZY)
+	private List<RoutineExercise> routineExercise;
 
-	public Users(Integer id, String name, String email, String password, List<WeightControl> weightControl) {
-		
+	
+	public Users(Integer id, String name, String email, String password, List<WeightControl> weightControl,
+			List<RoutineExercise> routineExercise) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.weightControl = weightControl;
+		this.routineExercise = routineExercise;
 	}
 
 	public Users() {
@@ -85,6 +91,15 @@ public class Users {
 	public void setWeightControl(List<WeightControl> weightControl) {
 		this.weightControl = weightControl;
 	}
+	
+	public List<RoutineExercise> getRoutineExercise() {
+		return routineExercise;
+	}
+
+	public void setRoutineExercise(List<RoutineExercise> routineExercise) {
+		this.routineExercise = routineExercise;
+	}
+
 
 //	@Override
 //	public String toString() {

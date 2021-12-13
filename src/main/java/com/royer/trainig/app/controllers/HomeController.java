@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.royer.trainig.app.models.RoutineExercise;
 import com.royer.trainig.app.models.Users;
 import com.royer.trainig.app.models.WeightControl;
+import com.royer.trainig.app.repository.RoutineExerciseRepository;
 import com.royer.trainig.app.repository.UserRepository;
 import com.royer.trainig.app.repository.WeightControlRepository;
 
@@ -17,6 +19,7 @@ public class HomeController {
 
 	@Autowired UserRepository userRepository;
 	@Autowired WeightControlRepository weightControlRepository;
+	@Autowired RoutineExerciseRepository routineExerciseRepository;
 	
 	@GetMapping("/")
 	public List<Users> home () {
@@ -36,5 +39,12 @@ public class HomeController {
 //			System.out.println(control);
 //		}
 		return weightsControls;
+	}
+	
+	@GetMapping("/routine-exercise")
+	public List<RoutineExercise> routineExercise() {
+		List<RoutineExercise> routineExerciseList = new ArrayList<RoutineExercise>();
+		routineExerciseRepository.findAll().forEach(routineExerciseList::add);
+		return routineExerciseList;
 	}
 }
