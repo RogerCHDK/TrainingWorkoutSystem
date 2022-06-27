@@ -29,9 +29,9 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<Users> createOrUpdateUser(Users user){
-		System.out.println(user.getName());
-		System.out.println(user.getId());
-		System.out.println(user.getEmail());
+//		System.out.println(user.getName());
+//		System.out.println(user.getId());
+//		System.out.println(user.getEmail());
 		Users updated = service.createOrUpdateUser(user);
 		return new ResponseEntity<Users>(updated, new HttpHeaders(), HttpStatus.OK);
 	}
