@@ -32,7 +32,7 @@ public class HomeController {
 	@Autowired RoutineExerciseRepository routineExerciseRepository;
 	@Autowired TrainigExerciseRepository trainigExerciseRepository;
 	@Autowired TrainingSetRepository trainigSetRepository;
-	@Autowired CardioMachineRepository cardioMachineRepository;
+	
 	@Autowired CardioSetRepository cardioSetRepository;
 	@Autowired CardioWorkoutRepository cardioWorkoutRepository;
 	
@@ -71,13 +71,7 @@ public class HomeController {
 		return trainigSetList;
 	}
 	
-	@GetMapping("/cardio-machine")
-	public List<CardioMachine> cardioMachine() {
-		List<CardioMachine> cardioMachineList = new ArrayList<CardioMachine>();
-		cardioMachineRepository.findAll().forEach(cardioMachineList::add);
-		return cardioMachineList;
-		
-	}
+	
 	
 	@GetMapping("/cardio-set")
 	public List<CardioSet> cardioSet() {
